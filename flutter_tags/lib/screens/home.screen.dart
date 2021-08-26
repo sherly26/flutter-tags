@@ -95,35 +95,38 @@ class _MyHomePageState extends State<MyHomePage> {
             .size;
 
         if (tag.tagIsActive) {
-          return Wrap(children: [
-            Container(
-              padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-              width: size.width + 55,
-              margin: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-              decoration: BoxDecoration(
-                  color: Colors.blueAccent,
-                  borderRadius: BorderRadius.circular(10)),
-              child: Row(
-                children: [
-                  Expanded(child: Text(tag.tagName, style: textStyle)),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: InkWell(
-                      child: Icon(Icons.close, size: 20, color: Colors.white),
-                      onTap: () {
-                        final foundItem = tags
-                            .where((element) => element.tagName == tag.tagName)
-                            .first;
-                        setState(() {
-                          foundItem.tagIsActive = false;
-                        });
-                      },
-                    ),
-                  )
-                ],
+          return Center(
+            child: Wrap(children: [
+              Container(
+                padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                width: size.width + 55,
+                margin: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+                decoration: BoxDecoration(
+                    color: Colors.blueAccent,
+                    borderRadius: BorderRadius.circular(10)),
+                child: Row(
+                  children: [
+                    Expanded(child: Text(tag.tagName, style: textStyle)),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: InkWell(
+                        child: Icon(Icons.close, size: 20, color: Colors.white),
+                        onTap: () {
+                          final foundItem = tags
+                              .where(
+                                  (element) => element.tagName == tag.tagName)
+                              .first;
+                          setState(() {
+                            foundItem.tagIsActive = false;
+                          });
+                        },
+                      ),
+                    )
+                  ],
+                ),
               ),
-            ),
-          ]);
+            ]),
+          );
         } else {
           return Container();
         }
